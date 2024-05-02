@@ -1,5 +1,6 @@
 package br.com.fiap.clientmanagement.fiaptcp4clientmanagement.dto;
 
+import jakarta.persistence.Id;
 import lombok.*;
 
 import java.util.UUID;
@@ -25,5 +26,6 @@ public class AddressDto {
 
     private String province;
 
-    private String county;
+    private String country;
+
 }
