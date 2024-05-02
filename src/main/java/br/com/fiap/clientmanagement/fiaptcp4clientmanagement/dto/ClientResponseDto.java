@@ -4,11 +4,10 @@ import lombok.*;
 
 import java.util.UUID;
 
-@AllArgsConstructor
-@Builder
+@NoArgsConstructor
 @Getter
 @Setter
-public class ClientDto {
+public class ClientResponseDto {
 
     private UUID id;
 
