@@ -1,14 +1,19 @@
 package br.com.fiap.clientmanagement.fiaptcp4clientmanagement.model.entity;
 
 import br.com.fiap.clientmanagement.fiaptcp4clientmanagement.dto.AddressDto;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.modelmapper.ModelMapper;
 
 import java.util.UUID;
 
 @Entity
 @Table(name = "address")
+@NoArgsConstructor
 @Data
 public class AddressEntity {
 
@@ -36,12 +41,16 @@ public class AddressEntity {
     @Column
     private String country;
 
-    public AddressDto toDto(){
-       return new  ModelMapper().map(this,AddressDto.class);
+    public AddressEntity(UUID id) {
+        this.id = id;
     }
 
-    public AddressEntity toEntity(AddressDto dto){
-        return new ModelMapper().map(dto,AddressEntity.class);
+    public AddressDto toDto() {
+        return new ModelMapper().map(this, AddressDto.class);
+    }
+
+    public AddressEntity toEntity(AddressDto dto) {
+        return new ModelMapper().map(dto, AddressEntity.class);
     }
 
 }

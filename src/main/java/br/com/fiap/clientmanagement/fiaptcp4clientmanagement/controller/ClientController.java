@@ -18,9 +18,6 @@ public class ClientController {
     @Autowired
     private ClientService service;
 
-    @Autowired
-    private ModelMapper modelMapper;
-
     @GetMapping("/{id}")
     public ResponseEntity<ClientResponseDto> findById(@PathVariable UUID id) {
         ClientResponseDto dto = service.findById(id);

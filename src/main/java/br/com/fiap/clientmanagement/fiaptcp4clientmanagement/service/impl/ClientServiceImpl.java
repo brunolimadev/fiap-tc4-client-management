@@ -52,8 +52,8 @@ public class ClientServiceImpl implements ClientService {
         Optional<ClientEntity> client = repository.findById(dto.getId());
 
         if (client.isPresent()) {
-            ClientEntity clienteAtualizado = new ClientEntity().toEntity(dto);
-            repository.save(clienteAtualizado);
+            ClientEntity updateCliente = new ClientEntity().toEntity(dto);
+            repository.save(updateCliente);
         } else {
             throw new ClientNotFoundException(dto.getId());
         }
