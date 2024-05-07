@@ -3,6 +3,7 @@ package br.com.fiap.clientmanagement.fiaptcp4clientmanagement.model.entity;
 import br.com.fiap.clientmanagement.fiaptcp4clientmanagement.dto.ClientRequestDto;
 import br.com.fiap.clientmanagement.fiaptcp4clientmanagement.dto.ClientResponseDto;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -13,9 +14,11 @@ import java.util.UUID;
 @Table(name = "client")
 @Data
 @NoArgsConstructor
+@Builder
 public class ClientEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @Column
@@ -24,8 +27,8 @@ public class ClientEntity {
     @Column
     private String email;
 
-    @ManyToOne()
-    @JoinColumn(name = "address")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address", referencedColumnName = "id")
     private AddressEntity address;
 
     public ClientResponseDto toClientDto(){

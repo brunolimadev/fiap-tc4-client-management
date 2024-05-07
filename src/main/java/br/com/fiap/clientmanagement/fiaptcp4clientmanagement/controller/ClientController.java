@@ -31,9 +31,9 @@ public class ClientController {
     }
 
     @PostMapping
-    public ResponseEntity<String> save(@RequestBody ClientRequestDto dto) {
-        service.create(dto);
-        return ResponseEntity.ok("Customer registered successfully!");
+    public ResponseEntity<ClientResponseDto> save(@RequestBody ClientRequestDto dto) {
+        ClientResponseDto responseDto = service.create(dto);
+        return ResponseEntity.ok(responseDto);
     }
 
     @PutMapping()

@@ -29,9 +29,9 @@ public class AddressController {
     }
 
     @PostMapping
-    public ResponseEntity<String> save(@RequestBody AddressDto dto) {
-        service.create(dto);
-        return ResponseEntity.ok("Address registered successfully!");
+    public ResponseEntity<AddressDto> save(@RequestBody AddressDto dto) {
+        AddressDto addressDto = service.create(dto);
+        return ResponseEntity.ok(addressDto);
     }
 
     @PutMapping()

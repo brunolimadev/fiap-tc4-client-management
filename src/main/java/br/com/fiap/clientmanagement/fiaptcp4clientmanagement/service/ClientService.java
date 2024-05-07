@@ -10,7 +10,7 @@ import java.util.UUID;
 @Service
 public interface ClientService {
 
-    public void create(ClientRequestDto dto);
+    public ClientResponseDto create(ClientRequestDto dto);
 
     public ClientResponseDto findById(UUID id);
 
