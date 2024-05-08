@@ -12,8 +12,6 @@ public interface AddressService {
 
     public AddressDto findById(UUID id);
 
-    public AddressEntity findByIdEntity(UUID id);
-
     public List<AddressDto> findAll();
 
     public void delete(UUID id);
