@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/client-management/address")
+@RequestMapping("/address")
 public class AddressController {
 
     @Autowired
@@ -22,9 +22,9 @@ public class AddressController {
         return ResponseEntity.ok(addressDtos);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<AddressDto> findById(@PathVariable UUID id) {
-        AddressDto addressDto = service.findById(id);
+    @GetMapping("/{uuid}")
+    public ResponseEntity<AddressDto> findById(@PathVariable UUID uuid) {
+        AddressDto addressDto = service.findById(uuid);
         return ResponseEntity.ok(addressDto);
     }
 

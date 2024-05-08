@@ -12,15 +12,15 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/client-management/clients")
+@RequestMapping("/client")
 public class ClientController {
 
     @Autowired
     private ClientService service;
 
-    @GetMapping("/{id}")
-    public ResponseEntity<ClientResponseDto> findById(@PathVariable UUID id) {
-        ClientResponseDto dto = service.findById(id);
+    @GetMapping("/{uuid}")
+    public ResponseEntity<ClientResponseDto> findById(@PathVariable UUID uuid) {
+        ClientResponseDto dto = service.findById(uuid);
         return ResponseEntity.ok(dto);
     }
 
