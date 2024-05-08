@@ -66,10 +66,17 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public void update(ClientRequestDto dto) {
+
+        Optional<AddressEntity> addressEntity = addressRepository.findById(dto.getIdAddress());
+        if (addressEntity.isEmpty()) {
+            throw new AddressNotFoundException(dto.getIdAddress());
+        }
+
         Optional<ClientEntity> client = clientRepository.findById(dto.getId());
 
         if (client.isPresent()) {
             ClientEntity updateCliente = new ClientEntity().toEntity(dto);
+            updateCliente.setAddress(addressEntity.get());
             clientRepository.save(updateCliente);
         } else {
             throw new ClientNotFoundException(dto.getId());
