@@ -3,15 +3,18 @@ package br.com.fiap.clientmanagement.fiaptcp4clientmanagement.controller;
 import br.com.fiap.clientmanagement.fiaptcp4clientmanagement.dto.ClientRequestDto;
 import br.com.fiap.clientmanagement.fiaptcp4clientmanagement.dto.ClientResponseDto;
 import br.com.fiap.clientmanagement.fiaptcp4clientmanagement.service.ClientService;
+import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
 
 @RestController
+@Validated
 @RequestMapping("/client")
 public class ClientController {
 
@@ -31,13 +34,13 @@ public class ClientController {
     }
 
     @PostMapping
-    public ResponseEntity<ClientResponseDto> save(@RequestBody ClientRequestDto dto) {
+    public ResponseEntity<ClientResponseDto> save(@Valid @RequestBody ClientRequestDto dto) {
         ClientResponseDto responseDto = service.create(dto);
         return ResponseEntity.ok(responseDto);
     }
 
     @PutMapping()
-    public ResponseEntity<String> update(@RequestBody ClientRequestDto dto) {
+    public ResponseEntity<String> update(@Valid @RequestBody ClientRequestDto dto) {
             service.update(dto);
             return ResponseEntity.ok("Client updated successfully!");
     }

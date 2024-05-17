@@ -27,23 +27,4 @@ public class AddressController {
         AddressDto addressDto = service.findById(uuid);
         return ResponseEntity.ok(addressDto);
     }
-
-    @PostMapping
-    public ResponseEntity<AddressDto> save(@RequestBody AddressDto dto) {
-        AddressDto addressDto = service.create(dto);
-        return ResponseEntity.ok(addressDto);
-    }
-
-    @PutMapping()
-    public ResponseEntity<String> update(@RequestBody AddressDto dto) {
-        service.update(dto);
-        return ResponseEntity.ok("Address updated successfully!");
-    }
-
-    @DeleteMapping("/{uuid}")
-    public ResponseEntity<String> delete(@PathVariable UUID uuid) {
-        service.delete(uuid);
-        return ResponseEntity.ok("Address deleted successfully!");
-    }
-
 }

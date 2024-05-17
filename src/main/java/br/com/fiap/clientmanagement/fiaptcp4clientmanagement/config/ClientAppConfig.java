@@ -15,11 +15,6 @@ import org.springframework.context.annotation.Configuration;
 public class ClientAppConfig {
 
     @Bean
-    public ClientService clientService(){
-        return new ClientServiceImpl();
-    }
-
-    @Bean
     public AddressService addressService(){
         return new AddressServiceImpl();
     }

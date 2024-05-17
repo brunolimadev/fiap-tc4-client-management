@@ -41,6 +41,9 @@ public class AddressEntity {
     @Column
     private String country;
 
+    @Column
+    private String zipCode;
+
     public AddressEntity(UUID id) {
         this.id = id;
     }

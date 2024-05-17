@@ -2,21 +2,22 @@ package br.com.fiap.clientmanagement.fiaptcp4clientmanagement.service.impl;
 
 import br.com.fiap.clientmanagement.fiaptcp4clientmanagement.dto.ClientRequestDto;
 import br.com.fiap.clientmanagement.fiaptcp4clientmanagement.dto.ClientResponseDto;
-import br.com.fiap.clientmanagement.fiaptcp4clientmanagement.exceptions.AddressNotFoundException;
 import br.com.fiap.clientmanagement.fiaptcp4clientmanagement.exceptions.ClientNotFoundException;
-import br.com.fiap.clientmanagement.fiaptcp4clientmanagement.model.entity.AddressEntity;
 import br.com.fiap.clientmanagement.fiaptcp4clientmanagement.model.entity.ClientEntity;
 import br.com.fiap.clientmanagement.fiaptcp4clientmanagement.repository.AddressRepository;
 import br.com.fiap.clientmanagement.fiaptcp4clientmanagement.repository.ClientRepository;
 import br.com.fiap.clientmanagement.fiaptcp4clientmanagement.service.ClientService;
+import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+@Service
 public class ClientServiceImpl implements ClientService {
 
     @Autowired
@@ -29,19 +30,8 @@ public class ClientServiceImpl implements ClientService {
     private ModelMapper modelMapper;
 
     @Override
-    public ClientResponseDto create(ClientRequestDto dto) {
-
-        ClientEntity clientEntity = new ClientEntity();
-        Optional<AddressEntity> addressDto = addressRepository.findById(dto.getIdAddress());
-
-        if (addressDto.isEmpty()){
-            throw new AddressNotFoundException(dto.getIdAddress());
-        }
-
-        clientEntity.setName(dto.getName());
-        clientEntity.setEmail(dto.getEmail());
-        clientEntity.setAddress(addressDto.get());
-
+    public ClientResponseDto create(@Valid ClientRequestDto dto) {
+        ClientEntity clientEntity = modelMapper.map(dto,ClientEntity.class);
         return clientRepository.save(clientEntity).toClientDto();
     }
 
@@ -67,16 +57,10 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public void update(ClientRequestDto dto) {
 
-        Optional<AddressEntity> addressEntity = addressRepository.findById(dto.getIdAddress());
-        if (addressEntity.isEmpty()) {
-            throw new AddressNotFoundException(dto.getIdAddress());
-        }
-
         Optional<ClientEntity> client = clientRepository.findById(dto.getId());
 
         if (client.isPresent()) {
             ClientEntity updateCliente = new ClientEntity().toEntity(dto);
-            updateCliente.setAddress(addressEntity.get());
             clientRepository.save(updateCliente);
         } else {
             throw new ClientNotFoundException(dto.getId());
