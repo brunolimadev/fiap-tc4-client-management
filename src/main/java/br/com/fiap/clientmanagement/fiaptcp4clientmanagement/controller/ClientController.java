@@ -16,7 +16,7 @@ import java.util.UUID;
 
 @RestController
 @Validated
-@RequestMapping("/client")
+@RequestMapping("/clients")
 @Tag(name = "Client Controller",
         description = "This service will be responsible for all customer-related operations" +
                       ", including creating, reading, updating and deleting customer records")
