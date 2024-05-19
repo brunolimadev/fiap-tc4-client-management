@@ -1,7 +1,6 @@
 package br.com.fiap.clientmanagement.fiaptcp4clientmanagement.service;
 
 import br.com.fiap.clientmanagement.fiaptcp4clientmanagement.dto.AddressDto;
-import br.com.fiap.clientmanagement.fiaptcp4clientmanagement.model.entity.AddressEntity;
 
 import java.util.List;
 import java.util.UUID;

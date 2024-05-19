@@ -2,7 +2,6 @@ package br.com.fiap.clientmanagement.fiaptcp4clientmanagement.dto;
 
 import br.com.fiap.clientmanagement.fiaptcp4clientmanagement.model.entity.AddressEntity;
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.persistence.Id;
 import lombok.*;
 import org.modelmapper.ModelMapper;
 
